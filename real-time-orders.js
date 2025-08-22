@@ -1,142 +1,48 @@
-jQuery(document).ready(function($) {
+
+jQuery(document).ready(function ($) {
     'use strict';
-    
-    // Variables globales
-    let currentLimit = 10;
-    let currentStatus = '';
-    let autoRefreshInterval;
-    
-    // Function to update orders table
-    function updateOrdersTable(showLoading = true) {
-        if (showLoading) {
-            $('#orders-loading').show();
-            $('#my-orders-table').hide();
+
+    // Only run if the container with the ID 'mrtop-container' exists on the page.
+    if ($('#mrtop-container').length === 0) {
+        return;
+    }
+
+    /**
+     * Function to refresh the orders via AJAX.
+     */
+    function refreshOrders() {
+        // Check if the mrtop_ajax object is available
+        if (typeof mrtop_ajax === 'undefined') {
+            console.error('AJAX object is not available.');
+            return;
         }
-        
+
         $.ajax({
-            url: my_ajax_object.ajax_url,
+            url: mrtop_ajax.ajax_url,
             type: 'POST',
             data: {
                 action: 'get_latest_orders',
-                nonce: my_ajax_object.nonce || '',
-                limit: currentLimit,
-                status: currentStatus
+                nonce: mrtop_ajax.nonce,
+                // In a real scenario, you would have filters to get these values.
+                // For this simplified version, we keep them static.
+                limit: 10,
+                status: ''
             },
-            success: function(response) {
-                if (response.success && response.data.html) {
-                    $('#my-orders-table tbody').html(response.data.html);
-                    showUpdateStatus('Órdenes actualizadas correctamente');
+            success: function (response) {
+                if (response.success) {
+                    // Update the table body with the new HTML
+                    $('#mrtop-orders-table tbody').html(response.data.html);
                 } else {
-                    showUpdateStatus('Error al actualizar las órdenes');
+                    // Optionally handle the error case
+                    console.error('Failed to refresh orders.');
                 }
             },
-            error: function(xhr, status, error) {
-                console.log('Error updating orders:', error);
-                showUpdateStatus('Error de conexión');
-            },
-            complete: function() {
-                $('#orders-loading').hide();
-                $('#my-orders-table').show();
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error('AJAX Error: ' + textStatus, errorThrown);
             }
         });
     }
-    
-    // Function to start auto-refresh
-    function startAutoRefresh() {
-        if (autoRefreshInterval) {
-            clearInterval(autoRefreshInterval);
-        }
-        
-        if (my_ajax_object.auto_refresh) {
-            autoRefreshInterval = setInterval(function() {
-                updateOrdersTable(false); // Don't show loading for auto-refresh
-            }, 5000);
-        }
-    }
-    
-    // Function to stop auto-refresh
-    function stopAutoRefresh() {
-        if (autoRefreshInterval) {
-            clearInterval(autoRefreshInterval);
-            autoRefreshInterval = null;
-        }
-    }
-    
-    // Event handlers for filters
-    $('#status-filter').on('change', function() {
-        currentStatus = $(this).val();
-        updateOrdersTable();
-    });
-    
-    $('#limit-filter').on('change', function() {
-        currentLimit = parseInt($(this).val());
-        updateOrdersTable();
-    });
-    
-    // Manual refresh button
-    $('#refresh-orders').on('click', function() {
-        $(this).prop('disabled', true).text('Actualizando...');
-        updateOrdersTable();
-        
-        setTimeout(function() {
-            $('#refresh-orders').prop('disabled', false).text('Actualizar Ahora');
-        }, 2000);
-    });
-    
-    // Show update status
-    function showUpdateStatus(message) {
-        if (!$('#update-status').length) {
-            $('#my-orders-container').append('<div id="update-status" style="text-align: center; margin-top: 10px; font-size: 12px; color: #666;"></div>');
-        }
-        
-        $('#update-status').text(message).fadeIn().delay(3000).fadeOut();
-    }
-    
-    // Initialize
-    function init() {
-        // Start auto-refresh if enabled
-        startAutoRefresh();
-        
-        // Update when page becomes visible
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden) {
-                updateOrdersTable();
-            }
-        });
-        
-        // Add keyboard shortcuts
-        $(document).keydown(function(e) {
-            // Ctrl+R or Cmd+R to refresh
-            if ((e.ctrlKey || e.metaKey) && e.keyCode === 82) {
-                e.preventDefault();
-                updateOrdersTable();
-            }
-        });
-        
-        // Add hover effects to table rows
-        $('#my-orders-table').on('mouseenter', 'tr', function() {
-            $(this).css('background-color', '#f8f9fa');
-        }).on('mouseleave', 'tr', function() {
-            $(this).css('background-color', '');
-        });
-        
-        // Add click to expand order details (future feature)
-        $('#my-orders-table').on('click', 'tr', function() {
-            if ($(this).find('td').length > 0) {
-                $(this).toggleClass('expanded');
-            }
-        });
-    }
-    
-    // Start initialization when DOM is ready
-    init();
-    
-    // Expose functions globally for debugging
-    window.myOrdersPlugin = {
-        updateOrders: updateOrdersTable,
-        startAutoRefresh: startAutoRefresh,
-        stopAutoRefresh: stopAutoRefresh,
-        currentLimit: function() { return currentLimit; },
-        currentStatus: function() { return currentStatus; }
-    };
+
+    // Set an interval to call the refreshOrders function every 5000 milliseconds (5 seconds).
+    setInterval(refreshOrders, 5000);
 });
