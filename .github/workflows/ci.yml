@@ -1,0 +1,99 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        php: [7.4, 8.0, 8.1, 8.2]
+        wordpress: [5.8, 6.0, 6.1, 6.2, 6.3, 6.4]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, sqlite3, curl, json, mbstring, zip
+        tools: composer:v2
+    
+    - name: Setup WordPress
+      uses: wordpress/wordpress-testing@v2
+      with:
+        wp-version: ${{ matrix.wordpress }}
+    
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+    
+    - name: Run PHPUnit tests
+      run: composer test
+    
+    - name: Run PHP CodeSniffer
+      run: composer phpcs
+    
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Run security scan
+      uses: github/codeql-action/init@v2
+      with:
+        languages: php
+    
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+    
+  deploy:
+    needs: [test, security]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Create release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          Automated release from CI/CD pipeline
+          
+          Changes in this release:
+          - Automated build and test
+          - Security scan completed
+          - All tests passed
+        draft: false
+        prerelease: false
+    
+    - name: Build plugin
+      run: |
+        mkdir -p build
+        cp -r *.php assets languages uninstall.php index.php LICENSE .gitignore composer.json build/
+        cd build
+        zip -r ../woocommerce-real-time-orders-plugin.zip .
+    
+    - name: Upload release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./woocommerce-real-time-orders-plugin.zip
+        asset_name: woocommerce-real-time-orders-plugin.zip
+        asset_content_type: application/zip 

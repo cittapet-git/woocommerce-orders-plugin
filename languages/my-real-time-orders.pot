@@ -1,0 +1,297 @@
+# Copyright (C) 2024 Cittapet
+# This file is distributed under the MIT License.
+msgid ""
+msgstr ""
+"Project-Id-Version: My Real-Time WooCommerce Orders 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/cittapet-git/woocommerce-real-time-orders-plugin\n"
+"POT-Creation-Date: 2024-12-19 10:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: my-real-time-orders-plugin.php:25
+msgid "The \"My Real-Time WooCommerce Orders\" plugin requires WooCommerce to be installed and active. The plugin has been deactivated."
+msgstr ""
+
+#: my-real-time-orders-plugin.php:67
+msgid "Órdenes Recientes de WooCommerce"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:72
+msgid "Filtrar por estado:"
+msgstr ""
+
+#: my-real-time-orders.php:74
+msgid "Todos los estados"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:75
+msgid "Pendiente"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:76
+msgid "Procesando"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:77
+msgid "Completado"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:78
+msgid "Cancelado"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:79
+msgid "Reembolsado"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:82
+msgid "Mostrar:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:84
+msgid "5 órdenes"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:85
+msgid "10 órdenes"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:86
+msgid "20 órdenes"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:87
+msgid "50 órdenes"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:90
+msgid "Actualizar Ahora"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:94
+msgid "Cargando órdenes..."
+msgstr ""
+
+#: my-real-time-orders-plugin.php:98
+msgid "Número de Orden"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:99
+msgid "Fecha"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:100
+msgid "Estado"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:101
+msgid "Total"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:102
+msgid "Cliente"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:116
+msgid "🔄 Actualización automática cada 5 segundos"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:130
+msgid "Error: WooCommerce no está activo."
+msgstr ""
+
+#: my-real-time-orders-plugin.php:137
+msgid "Debug Info:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:138
+msgid "Usuario actual:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:139
+msgid "Puede ver órdenes:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:140
+msgid "Puede ver pedidos:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:141
+msgid "Es admin:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:142
+msgid "Sí"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:142
+msgid "No"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:146
+msgid "Métodos Alternativos:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:151
+msgid "Método 1 (posts):"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:151
+msgid "órdenes"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:156
+msgid "Método 2 (HPOS):"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:158
+msgid "Tabla no existe"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:169
+msgid "Método 3 (get_posts):"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:172
+msgid "Primera orden ID:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:172
+msgid "Estado:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:179
+msgid "🚀 SOLUCIÓN: Usando método directo que SÍ funciona"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:211
+msgid "✅ Encontradas"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:211
+msgid "órdenes usando método directo"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:259
+msgid "❌ No se encontraron órdenes con ningún método"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:263
+msgid "❌ Error en método directo:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:324
+msgid "Configuración de Órdenes en Tiempo Real"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:325
+msgid "Este plugin permite mostrar órdenes de WooCommerce en tiempo real usando el shortcode"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:327
+msgid "Estado del Sistema"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:329
+msgid "WooCommerce Version:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:330
+msgid "HPOS Enabled:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:331
+msgid "Total de Órdenes:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:332
+msgid "Tabla de Órdenes:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:335
+msgid "Uso del Shortcode"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:336
+msgid "Puedes usar el shortcode con los siguientes parámetros:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:338
+msgid "limit"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:338
+msgid "Número de órdenes a mostrar (por defecto: 10)"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:339
+msgid "status"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:339
+msgid "Filtrar por estado específico"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:340
+msgid "show_filters"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:340
+msgid "Mostrar filtros (true/false)"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:341
+msgid "auto_refresh"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:341
+msgid "Actualización automática (true/false)"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:342
+msgid "debug"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:342
+msgid "Mostrar información de debug (true/false)"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:345
+msgid "Ejemplos:"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:347
+msgid "Muestra 10 órdenes con configuración por defecto"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:348
+msgid "Muestra 20 órdenes completadas"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:349
+msgid "Con información de debug"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:352
+msgid "Base de Datos"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:353
+msgid "El plugin utiliza la tabla de órdenes de WooCommerce para obtener la información."
+msgstr ""
+
+#: my-real-time-orders-plugin.php:355
+msgid "Debug"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:356
+msgid "Si tienes problemas, usa el parámetro"
+msgstr ""
+
+#: my-real-time-orders-plugin.php:356
+msgid "para ver información del sistema:"
+msgstr "" 
